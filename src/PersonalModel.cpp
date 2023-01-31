@@ -12,6 +12,12 @@ QVariant PersonalModel::headerData( int section, Qt::Orientation orientation, in
         switch ( section ) {
         case 0:
             return "Id";
+        case 1:
+            return "Name";
+        case 2:
+            return "Surname";
+        case 3:
+            return "Age";
         }
     }
 
@@ -28,6 +34,12 @@ QVariant PersonalModel::data( const QModelIndex& index, int role ) const {
         switch ( col ) {
         case 0:
             return item.id;
+        case 1:
+            return QString::fromStdString( item.name );
+        case 2:
+            return QString::fromStdString( item.surname );
+        case 3:
+            return item.age;
         }
         break;
     }

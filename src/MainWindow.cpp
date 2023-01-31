@@ -6,5 +6,7 @@ MainWindow::MainWindow( QWidget* parent, Qt::WindowFlags flags ) : QMainWindow( 
 
 void MainWindow::setModel( std::shared_ptr< QAbstractTableModel >& model ) {
     m_model = model;
-    ui.tableView->setModel( m_model.get() );
+    m_sortFilter.setSourceModel( m_model.get() );
+    ui.tableView->setModel( &m_sortFilter );
+    ui.tableView->setSortingEnabled( true );
 }

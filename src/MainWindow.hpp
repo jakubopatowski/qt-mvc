@@ -4,6 +4,7 @@
 #include "ui_MainWindow.h"
 #include <QMainWindow>
 #include <memory>
+#include <QSortFilterProxyModel>
 
 class MainWindow : public QMainWindow
 {
@@ -15,4 +16,5 @@ class MainWindow : public QMainWindow
   private:
     Ui::MainWindow ui;
     std::shared_ptr< QAbstractTableModel > m_model;
+    QSortFilterProxyModel m_sortFilter;
 };

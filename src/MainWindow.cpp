@@ -1,6 +1,7 @@
 #include "MainWindow.hpp"
 
-MainWindow::MainWindow( QWidget* parent, Qt::WindowFlags flags ) : QMainWindow( parent, flags ) {
+MainWindow::MainWindow( QWidget* parent, Qt::WindowFlags flags )
+    : QMainWindow( parent, flags ), m_modelWidget( nullptr ) {
     ui.setupUi( this );
 
     //setup context menu
@@ -10,6 +11,7 @@ MainWindow::MainWindow( QWidget* parent, Qt::WindowFlags flags ) : QMainWindow( 
     tableMenu->addAction( ui.actionDelete );
     connect( ui.tableView, &QTableView::customContextMenuRequested, this,
              &MainWindow::slotCustomMenuRequested );
+    connect( ui.actionAdd, &QAction::triggered, this, &MainWindow::onAdd );
 }
 
 void MainWindow::setModel( std::shared_ptr< QAbstractTableModel >& model ) {
@@ -20,6 +22,14 @@ void MainWindow::setModel( std::shared_ptr< QAbstractTableModel >& model ) {
     ui.tableView->setSelectionBehavior( QAbstractItemView::SelectionBehavior::SelectRows );
 }
 
+void MainWindow::setModelWidget( QWidget* widget ) { m_modelWidget = widget; }
+
 void MainWindow::slotCustomMenuRequested( QPoint pos ) {
     tableMenu->popup( ui.tableView->viewport()->mapToGlobal( pos ) );
+}
+
+void MainWindow::onAdd() {
+    if ( m_modelWidget ) {
+        m_modelWidget->show();
+    }
 }

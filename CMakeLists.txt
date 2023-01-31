@@ -18,6 +18,13 @@ find_package(Qt5 COMPONENTS Widgets Gui REQUIRED)
 
 add_executable(helloworld
     src/main.cpp
+    src/PersonalInfo.cpp
+    src/PersonalInfo.hpp
+    src/PersonalModel.cpp
+    src/PersonalModel.hpp
+    src/MainWindow.cpp
+    src/MainWindow.hpp
+    src/MainWindow.ui
 )
 
 target_link_libraries(helloworld Qt5::Widgets Qt5::Gui)

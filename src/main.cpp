@@ -1,28 +1,20 @@
-#include <iostream>
 #include <QApplication>
-#include <QSplitter>
-#include<QFileSystemModel>
-#include <QTreeView>
+#include <QFileSystemModel>
 #include <QListView>
+#include <QSplitter>
+#include <QTreeView>
+#include <iostream>
+#include "PersonalModel.hpp"
+#include "MainWindow.hpp"
 
-int main(int argc, char **argv)
-{
-    QApplication app(argc, argv);
-    QSplitter *splitter = new QSplitter;
+int main( int argc, char** argv ) {
+    QApplication app( argc, argv );
 
-    QFileSystemModel *model = new QFileSystemModel;
-    model->setRootPath(QDir::currentPath());
+    std::shared_ptr< QAbstractTableModel > model = std::make_shared< PersonalModel >();
 
-    QTreeView *tree = new QTreeView(splitter);
-    tree->setModel(model);
-    tree->setRootIndex(model->index(QDir::currentPath()));
-
-    QListView *list = new QListView(splitter);
-    list->setModel(model);
-    list->setRootIndex(model->index(QDir::currentPath()));
-
-    splitter->setWindowTitle("Two views onto the same file system model.");
-    splitter->show();
-
+    MainWindow mainWindow;
+    mainWindow.setModel( model );
+    mainWindow.show();
+    
     return app.exec();
 }

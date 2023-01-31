@@ -48,6 +48,22 @@
     <string>Zamknij</string>
    </property>
   </action>
+  <action name="actionDelete">
+   <property name="text">
+    <string>Usuń</string>
+   </property>
+   <property name="toolTip">
+    <string>Usuń rekord</string>
+   </property>
+  </action>
+  <action name="actionAdd">
+   <property name="text">
+    <string>Dodaj</string>
+   </property>
+   <property name="toolTip">
+    <string>Dodaj rekord</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections>

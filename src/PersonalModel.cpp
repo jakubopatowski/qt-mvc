@@ -3,6 +3,8 @@
 PersonalModel::PersonalModel( QObject* parent ) : QAbstractTableModel( parent ) { createData(); }
 
 void PersonalModel::createData() { m_Data = PersonalInfo::getSomePersonalInfo(); }
+std::vector< PersonalInfo > PersonalModel::getData() { return m_Data; }
+void PersonalModel::addItem( PersonalInfo& item ) { m_Data.push_back( item ); }
 
 int PersonalModel::rowCount( const QModelIndex& ) const { return 4; }
 int PersonalModel::columnCount( const QModelIndex& ) const { return 4; }
@@ -45,3 +47,7 @@ QVariant PersonalModel::data( const QModelIndex& index, int role ) const {
     }
     return QVariant();
 }
+
+bool PersonalModel::insertRows( int row, int count, const QModelIndex& parent ) { return true; }
+
+bool PersonalModel::removeRows( int row, int count, const QModelIndex& parent ) { return true; }

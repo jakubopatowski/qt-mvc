@@ -14,7 +14,14 @@ MainWindow::MainWindow( QWidget* parent, Qt::WindowFlags flags )
     connect( ui.actionAdd, &QAction::triggered, this, &MainWindow::onAdd );
 }
 
-void MainWindow::setModel( std::shared_ptr< QAbstractTableModel >& model ) {
+void MainWindow::setModel( std::shared_ptr< PersonalModel >& model, PersonalWidget* widget ) {
+    setModel( model );
+    setModelWidget( widget );
+
+    m_modelWidget->setModel( m_model, 0 );
+}
+
+void MainWindow::setModel( std::shared_ptr< PersonalModel >& model ) {
     m_model = model;
     m_sortFilter.setSourceModel( m_model.get() );
     ui.tableView->setModel( &m_sortFilter );
@@ -22,7 +29,7 @@ void MainWindow::setModel( std::shared_ptr< QAbstractTableModel >& model ) {
     ui.tableView->setSelectionBehavior( QAbstractItemView::SelectionBehavior::SelectRows );
 }
 
-void MainWindow::setModelWidget( QWidget* widget ) { m_modelWidget = widget; }
+void MainWindow::setModelWidget( PersonalWidget* widget ) { m_modelWidget = widget; }
 
 void MainWindow::slotCustomMenuRequested( QPoint pos ) {
     tableMenu->popup( ui.tableView->viewport()->mapToGlobal( pos ) );

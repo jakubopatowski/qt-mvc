@@ -1,8 +1,4 @@
 #include <QApplication>
-#include <QFileSystemModel>
-#include <QListView>
-#include <QSplitter>
-#include <QTreeView>
 #include <iostream>
 
 #include "MainWindow.hpp"
@@ -12,12 +8,11 @@
 int main( int argc, char** argv ) {
     QApplication app( argc, argv );
 
-    std::shared_ptr< QAbstractTableModel > model = std::make_shared< PersonalModel >();
-    QWidget* modelWidget = new PersonalWidget();
+    auto model = std::make_shared< PersonalModel >();
+    PersonalWidget* modelWidget = new PersonalWidget();
 
     MainWindow mainWindow;
-    mainWindow.setModel( model );
-    mainWindow.setModelWidget( modelWidget );
+    mainWindow.setModel( model, modelWidget );
     mainWindow.show();
 
     return app.exec();

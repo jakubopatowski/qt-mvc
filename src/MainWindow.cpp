@@ -19,6 +19,9 @@ void MainWindow::setModel( std::shared_ptr< PersonalModel >& model, PersonalWidg
     setModelWidget( widget );
 
     m_modelWidget->setModel( m_model, 0 );
+
+    m_sortFilter.setFilterRegExp( QRegExp( "Jakub" ) );
+    m_sortFilter.setFilterKeyColumn( 1 );
 }
 
 void MainWindow::setModel( std::shared_ptr< PersonalModel >& model ) {

@@ -20,6 +20,8 @@ void PersonalWidget::setModel( std::shared_ptr< PersonalModel >& model, unsigned
     else {
         ui.idSpinBox->setValue( m_model->getData().size() + 1 );
     }
+
+
 }
 
 void PersonalWidget::onAdd() {
@@ -30,4 +32,5 @@ void PersonalWidget::onAdd() {
     item.age = ui.ageSpinBox->value();
 
     m_model->addItem( item );
+    //m_model->insertRows( item.id - 1, 1 );
 }

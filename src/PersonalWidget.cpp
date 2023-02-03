@@ -20,8 +20,6 @@ void PersonalWidget::setModel( std::shared_ptr< PersonalModel >& model, unsigned
     else {
         ui.idSpinBox->setValue( m_model->getData().size() + 1 );
     }
-
-
 }
 
 void PersonalWidget::onAdd() {
